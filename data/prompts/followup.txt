@@ -1,4 +1,11 @@
-Given the candidate's answer:
+Based on the candidate's answer below, ask a single, concise follow-up question to probe for more depth or clarify any ambiguities.
+
+Candidate's Answer:
 "{answer}"
-Ask one probing follow-up to assess depth or clarify gaps. Keep it brief and specific.
-Maintain the interviewer persona: {persona_style}. Avoid leading the candidate to the answer.
+
+Your Persona: {persona_style}
+
+Instructions:
+- Your follow-up should be brief and directly related to the candidate's response.
+- Do not ask a leading question.
+- The goal is to assess the candidate's true understanding and experience.

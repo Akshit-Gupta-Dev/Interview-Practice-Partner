@@ -6,27 +6,50 @@
       "question_seeds": [
         "Describe a time you optimized a critical system component.",
         "Explain the trade-offs of choosing a relational DB vs a document store.",
-        "Walk me through debugging a production incident you handled."
+        "Walk me through debugging a production incident you handled.",
+        "How do you approach designing a new feature? What are the key considerations?",
+        "Tell me about a time you had a disagreement with a colleague on a technical decision. How did you handle it?",
+        "What are your thoughts on microservices vs. monolith architecture?",
+        "How do you ensure the quality of your code?",
+        "Describe a complex project you worked on. What was your role and what were the biggest challenges?"
       ],
-      "technical_axes": ["algorithms", "systems", "architecture", "testing"]
+      "technical_axes": ["algorithms", "systems", "architecture", "testing", "collaboration"]
     },
     "sales_ae": {
       "seniority": ["junior", "mid", "senior"],
       "domains": ["smb", "enterprise"],
       "question_seeds": [
         "Tell me about a tough negotiation and how you handled objections.",
-        "How do you build a multi-threaded champion strategy in enterprise accounts?"
+        "How do you build a multi-threaded champion strategy in enterprise accounts?",
+        "Walk me through your sales process, from prospecting to closing.",
+        "How do you stay motivated after a series of rejections?",
+        "Describe a time you upsold a client. What was your approach?"
       ],
-      "technical_axes": ["discovery", "objection_handling", "negotiation", "closing"]
+      "technical_axes": ["discovery", "objection_handling", "negotiation", "closing", "prospecting"]
     },
     "retail_associate": {
       "seniority": ["junior", "mid"],
       "domains": ["electronics", "grocery", "apparel"],
       "question_seeds": [
         "Describe handling a difficult customer while maintaining store policy.",
-        "How do you balance speed and accuracy during peak hours?"
+        "How do you balance speed and accuracy during peak hours?",
+        "Tell me about a time you went above and beyond for a customer.",
+        "How do you stay up-to-date on product knowledge?",
+        "What would you do if you saw a coworker providing incorrect information to a customer?"
       ],
-      "technical_axes": ["customer_service", "conflict_resolution", "teamwork", "efficiency"]
+      "technical_axes": ["customer_service", "conflict_resolution", "teamwork", "efficiency", "product_knowledge"]
+    },
+    "product_manager": {
+      "seniority": ["junior", "mid", "senior"],
+      "domains": ["b2b", "b2c", "platform"],
+      "question_seeds": [
+        "How do you decide which features to build next?",
+        "Walk me through how you would handle a request from a large customer that doesn't align with your product roadmap.",
+        "How do you measure the success of a product?",
+        "Tell me about a time you had to make a difficult trade-off.",
+        "How do you work with engineering and design teams?"
+      ],
+      "technical_axes": ["prioritization", "stakeholder_management", "data_analysis", "communication", "technical_acumen"]
     }
   },
   "personas": {
