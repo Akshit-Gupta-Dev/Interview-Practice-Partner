@@ -6,8 +6,8 @@ An interactive application designed to simulate professional interviews across m
 Requirements
 - Python 3.9 or higher
 - Tkinter and ttk (standard with Python)
-- SpeechRecognition and pyttsx3 for voice input/output
-- Ollama installed locally with access to the Mistral model
+- SpeechRecognition,PyAudio and pyttsx3 for voice input/output
+- Ollama installed locally with access to the Mistral model or minimax-m2:cloud model(install request)
 - JSON configuration files for roles, rubrics, and prompts
 
 Setup Instructions
