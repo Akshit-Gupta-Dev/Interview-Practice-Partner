@@ -1,0 +1,5 @@
+Evaluate the candidate's answer:
+"{answer}"
+Score each dimension on a 1-5 scale: clarity, technical_depth, relevance, confidence.
+Provide exactly 2 strengths and 2 improvement suggestions using the rubric guidance.
+Return JSON with keys: scores, strengths, improvements.

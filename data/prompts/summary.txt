@@ -1,0 +1,5 @@
+Summarize the interview session. Provide:
+- 3 notable strengths patterns
+- 3 improvement patterns
+- Final recommendations for preparation before next interview
+Keep it role-specific and actionable.

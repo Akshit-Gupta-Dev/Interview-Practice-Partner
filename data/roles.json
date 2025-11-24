@@ -1,0 +1,50 @@
+{
+  "roles": {
+    "software_engineer": {
+      "seniority": ["junior", "mid", "senior"],
+      "domains": ["backend", "frontend", "ml", "devops"],
+      "question_seeds": [
+        "Describe a time you optimized a critical system component.",
+        "Explain the trade-offs of choosing a relational DB vs a document store.",
+        "Walk me through debugging a production incident you handled."
+      ],
+      "technical_axes": ["algorithms", "systems", "architecture", "testing"]
+    },
+    "sales_ae": {
+      "seniority": ["junior", "mid", "senior"],
+      "domains": ["smb", "enterprise"],
+      "question_seeds": [
+        "Tell me about a tough negotiation and how you handled objections.",
+        "How do you build a multi-threaded champion strategy in enterprise accounts?"
+      ],
+      "technical_axes": ["discovery", "objection_handling", "negotiation", "closing"]
+    },
+    "retail_associate": {
+      "seniority": ["junior", "mid"],
+      "domains": ["electronics", "grocery", "apparel"],
+      "question_seeds": [
+        "Describe handling a difficult customer while maintaining store policy.",
+        "How do you balance speed and accuracy during peak hours?"
+      ],
+      "technical_axes": ["customer_service", "conflict_resolution", "teamwork", "efficiency"]
+    }
+  },
+  "personas": {
+    "efficient": {
+      "style": "Concise, moves quickly, minimal chit-chat",
+      "constraints": "One question at a time, short follow-ups"
+    },
+    "chatty": {
+      "style": "Friendly but keeps focus on role relevance",
+      "constraints": "Paraphrase long user inputs and redirect"
+    },
+    "confused": {
+      "style": "Guiding, clarifies goals and expectations",
+      "constraints": "Ask setup questions before starting"
+    },
+    "edge": {
+      "style": "Polite, sets boundaries, offers alternatives",
+      "constraints": "Decline irrelevant/off-topic requests"
+    }
+  }
+}

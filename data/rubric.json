@@ -1,0 +1,19 @@
+{
+  "dimensions": [
+    { "name": "clarity", "desc": "Structure, coherence, STAR usage" },
+    { "name": "technical_depth", "desc": "Correctness, specificity, trade-offs" },
+    { "name": "relevance", "desc": "Directly addresses question and role context" },
+    { "name": "confidence", "desc": "Composure, ownership, precise language" }
+  ],
+  "scale": { "min": 1, "max": 5 },
+  "guidance": {
+    "strength_starters": [
+      "Strong structure with clear steps.",
+      "Demonstrated domain knowledge with specific examples."
+    ],
+    "improvement_starters": [
+      "Add measurable outcomes to quantify impact.",
+      "Expand on trade-offs and why you chose a specific approach."
+    ]
+  }
+}

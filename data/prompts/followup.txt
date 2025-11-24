@@ -1,0 +1,4 @@
+Given the candidate's answer:
+"{answer}"
+Ask one probing follow-up to assess depth or clarify gaps. Keep it brief and specific.
+Maintain the interviewer persona: {persona_style}. Avoid leading the candidate to the answer.
