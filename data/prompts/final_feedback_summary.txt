@@ -1,0 +1,24 @@
+You are an expert technical interviewer.
+
+Below is the full transcript of a candidate's interview for a {seniority} {role} position in the {domain} domain.
+
+Transcript:
+{transcript}
+
+Please provide a structured evaluation with the following:
+
+1. **Technical Feedback** – Assess the candidate’s technical knowledge, accuracy, and depth.
+2. **Communication Feedback** – Evaluate clarity, structure, and tone.
+3. **Problem-Solving Feedback** – Analyze how the candidate approached ambiguity and complexity.
+4. **Ethical/Professional Feedback** – Comment on professionalism, ethics, and judgment.
+5. **Survey Table** – Score each of the following on a scale of 1–5:
+    - Technical Knowledge
+    - Communication
+    - Problem Solving
+    - Professionalism
+6. **Areas for Improvement** – List 2–3 grouped suggestions under:
+    - Technical
+    - Communication
+    - Strategy
+
+Be objective, concise, and constructive.

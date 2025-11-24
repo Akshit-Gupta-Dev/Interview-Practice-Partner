@@ -139,19 +139,16 @@ def format_feedback(fb):
     return "\n".join(lines)
 
 def end_session():
-    # Aggregate feedback for all answers only at end
     try:
         if orc.ctx.get("answers"):
-            all_feedback = [orc.feedback(ans) for ans in orc.ctx["answers"]]
-            for fb in all_feedback:
-                display_message(format_feedback(fb) + "\n", "Feedback")
-
-        summary = orc.summary()
+            final_report = orc.final_feedback_and_summary()
+            display_message(f"Interviewer (Summary & Feedback):\n{final_report}\n", "Summary")
+        else:
+            display_message("No answers were recorded. Interview ended without feedback.\n", "Summary")
     except Exception as e:
-        messagebox.showerror("Summary Error", f"Failed To Generate Summary/Feedback: {e}")
-        summary = "Summary unavailable due to an error."
+        messagebox.showerror("Summary Error", f"Failed To Generate Final Feedback: {e}")
+        display_message("Summary unavailable due to an error.\n", "Summary")
 
-    display_message(f"Interviewer (Summary): {summary}\n", "Summary")
     display_message("Interviewer: Interview Ended.\n", "Interviewer")
     if voice_enabled_var.get():
         voice.speak("Interview Ended.")

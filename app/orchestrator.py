@@ -19,7 +19,9 @@ class Orchestrator:
             "domain": None,
             "persona": "efficient",
             "answers": [],
-            "feedback": []
+            "feedback": [],
+            "questions": [],
+            "finalized": False
         }
         # Load configs
         self.roles = json.loads(Path("data/roles.json").read_text())
@@ -27,21 +29,19 @@ class Orchestrator:
         self.prompts = {
             "interviewer": Path("data/prompts/interviewer.txt").read_text(),
             "followup": Path("data/prompts/followup.txt").read_text(),
-            "feedback": Path("data/prompts/feedback.txt").read_text(),
-            "summary": Path("data/prompts/summary.txt").read_text(),
+            # "feedback": Path("data/prompts/feedback.txt").read_text(),
+            # "summary": Path("data/prompts/summary.txt").read_text(),
+            "final_feedback_summary": Path("data/prompts/final_feedback_summary.txt").read_text()
         }
 
     def set_profile(self, role, seniority, domain, persona):
-        # Normalize Title Case values from GUI to lowercase keys
         role = role.lower().replace(" ", "_")
         seniority = seniority.lower()
         domain = domain.lower()
         persona = persona.lower()
 
-        # Validate domain against role
         role_pack = self.roles["roles"].get(role)
         if role_pack and domain not in role_pack["domains"]:
-            # fallback to first domain if invalid
             domain = role_pack["domains"][0]
 
         self.ctx.update({
@@ -70,8 +70,11 @@ class Orchestrator:
             technical_axes=axes,
             question_seeds=seeds
         )
+
+        question = self.llm.generate(prompt)
+        self.ctx["questions"].append(question)
         self.state = InterviewState.FOLLOWUP
-        return self.llm.generate(prompt)
+        return question
 
     def followup(self, last_answer: str):
         persona_style = self.roles["personas"][self.ctx["persona"]]["style"]
@@ -80,41 +83,60 @@ class Orchestrator:
             answer=last_answer,
             persona_style=persona_style
         )
-        self.state = InterviewState.FEEDBACK
         self.ctx["answers"].append(last_answer)
+        self.state = InterviewState.QUESTION
         return self.llm.generate(prompt)
 
-    def feedback(self, last_answer: str):
+    def final_feedback_and_summary(self):
+        if self.ctx["finalized"]:
+            return "Final feedback has already been generated."
+
+        self.ctx["finalized"] = True
+
+        full_transcript = "\n".join(
+            f"Q{i+1}: {q}\nA{i+1}: {a}"
+            for i, (q, a) in enumerate(zip(self.ctx["questions"], self.ctx["answers"]))
+        )
+
         prompt = self._format(
-            self.prompts["feedback"],
-            answer=last_answer,
+            self.prompts["final_feedback_summary"],
             role=self.ctx["role"],
             seniority=self.ctx["seniority"],
             domain=self.ctx["domain"],
-            persona=self.ctx["persona"]
+            transcript=full_transcript
         )
-        raw = self.llm.generate(prompt)
-        try:
-            j = json.loads(raw)
-        except Exception:
-            j = {"scores": {}, "strengths": [], "improvements": [], "raw": raw}
 
-        # Apply rubric guidance if missing
-        if not j.get("strengths"):
-            j["strengths"] = self.rubric["guidance"]["strength_starters"]
-        if not j.get("improvements"):
-            j["improvements"] = self.rubric["guidance"]["improvement_starters"]
-
-        self.ctx["feedback"].append(j)
-        self.state = InterviewState.QUESTION
-        return j
-
-    def summary(self):
-        prompt = self._format(
-            self.prompts["summary"],
-            role=self.ctx["role"],
-            seniority=self.ctx["seniority"],
-            domain=self.ctx["domain"]
-        )
         self.state = InterviewState.END
         return self.llm.generate(prompt)
+
+    # def feedback(self, last_answer: str):
+    #     prompt = self._format(
+    #         self.prompts["feedback"],
+    #         answer=last_answer,
+    #         role=self.ctx["role"],
+    #         seniority=self.ctx["seniority"],
+    #         domain=self.ctx["domain"],
+    #         persona=self.ctx["persona"]
+    #     )
+    #     raw = self.llm.generate(prompt)
+    #     try:
+    #         j = json.loads(raw)
+    #     except Exception:
+    #         j = {"scores": {}, "strengths": [], "improvements": [], "raw": raw}
+    #     if not j.get("strengths"):
+    #         j["strengths"] = self.rubric["guidance"]["strength_starters"]
+    #     if not j.get("improvements"):
+    #         j["improvements"] = self.rubric["guidance"]["improvement_starters"]
+    #     self.ctx["feedback"].append(j)
+    #     self.state = InterviewState.QUESTION
+    #     return j
+
+    # def summary(self):
+    #     prompt = self._format(
+    #         self.prompts["summary"],
+    #         role=self.ctx["role"],
+    #         seniority=self.ctx["seniority"],
+    #         domain=self.ctx["domain"]
+    #     )
+    #     self.state = InterviewState.END
+    #     return self.llm.generate(prompt)

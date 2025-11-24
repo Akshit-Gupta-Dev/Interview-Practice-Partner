@@ -1,8 +1,0 @@
-Please provide a summary of the interview session with the candidate for the {role} position.
-
-Based on the interview, identify:
-- Three notable strengths demonstrated by the candidate.
-- Three areas where the candidate could improve.
-- A final recommendation for the candidate to prepare for their next interview.
-
-Your summary should be specific to the role and provide actionable feedback.
